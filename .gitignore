@@ -1,0 +1,18 @@
+MANIFEST.MF
+.checkstyle
+ext/
+node_modules/
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+.metadata
+.project
+.settings
+.classpath
+.prefs
+target/
+
