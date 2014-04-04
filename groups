@@ -1,0 +1,6 @@
+# UUID                                  	Group Name
+#
+cca145befb0468762f34dd4bf5ee75e2cb05fa96	Non-Interactive Toolkit Users
+global:Anonymous-Users                  	Anonymous Users
+global:Registered-Users                 	Registered Users
+ldap:cn=gerrit-toolkit-committers,ou=Groups,dc=opendaylight,dc=org	ldap/gerrit-toolkit-committers
