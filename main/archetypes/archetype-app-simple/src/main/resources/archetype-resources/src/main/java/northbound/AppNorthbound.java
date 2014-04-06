@@ -76,7 +76,7 @@ public class AppNorthbound {
      * Example:
      *
      * Request URL:
-     * http://localhost:8080/app/northbound/api
+     * http://localhost:8080/app/northbound/${REST-Resource-Name}
      *
      * Response body in XML:
      * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
@@ -86,7 +86,7 @@ public class AppNorthbound {
      * Sample Northbound API
      * </pre>
      */
-    @Path("/simple")
+    @Path("/${REST-Resource-Name}")
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @StatusCodes()
@@ -106,7 +106,7 @@ public class AppNorthbound {
         return new ArrayList<SimpleData>();
     }
 
-    @Path("/simple/{uuid}")
+    @Path("/${REST-Resource-Name}/{uuid}")
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @TypeHint(SimpleData.class)
@@ -133,7 +133,7 @@ public class AppNorthbound {
      * Example:
      *
      * Request URL:
-     * http://localhost:8080/app/northbound/api
+     * http://localhost:8080/app/northbound/${REST-Resource-Name}
      *
      * Response body in XML:
      * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
@@ -143,7 +143,7 @@ public class AppNorthbound {
      * Sample Northbound API
      * </pre>
      */
-    @Path("/simple")
+    @Path("/${REST-Resource-Name}")
     @POST
     @StatusCodes({ @ResponseCode(code = 201, condition = "Data Inserted successfully"),
         @ResponseCode(code = 401, condition = "User not authorized to perform this operation"),
@@ -180,7 +180,7 @@ public class AppNorthbound {
     * Example:
     *
     * Request URL:
-    * http://localhost:8080/app/northbound/api/{uuid}
+    * http://localhost:8080/app/northbound/${REST-Resource-Name}/{uuid}
     *
     * Response body in XML:
     * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
@@ -190,7 +190,7 @@ public class AppNorthbound {
     * Sample Northbound API
     * </pre>
     */
-   @Path("/simple/{uuid}")
+   @Path("/${REST-Resource-Name}/{uuid}")
    @PUT
    @StatusCodes({ @ResponseCode(code = 200, condition = "Data Updated successfully"),
        @ResponseCode(code = 401, condition = "User not authorized to perform this operation"),
@@ -223,7 +223,7 @@ public class AppNorthbound {
    * Example:
    *
    * Request URL:
-   * http://localhost:8080/app/northbound/api/{uuid}
+   * http://localhost:8080/app/northbound/${REST-Resource-Name}/{uuid}
    *
    * Response body in XML:
    * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
@@ -233,7 +233,7 @@ public class AppNorthbound {
    * Sample Northbound API
    * </pre>
    */
-  @Path("/simple/{uuid}")
+  @Path("/${REST-Resource-Name}/{uuid}")
   @DELETE
   @StatusCodes({ @ResponseCode(code = 200, condition = "Data Deleted successfully"),
                  @ResponseCode(code = 401, condition = "User not authorized to perform this operation"),
