@@ -1,9 +1,5 @@
 # OpenDaylight Toolkit
 
-[![Build Status](https://travis-ci.org/opendaylight-toolkit/opendaylight-toolkit.svg?branch=master)](https://travis-ci.org/opendaylight-toolkit/opendaylight-toolkit)
-
-![alt text](http://media.playdota.com/items/121/icon.jpg "Mekansm")
-
 Quick HowTo
 -----------
 
@@ -18,6 +14,8 @@ Quick HowTo
 >**version:** <code>&lt;press enter, default&gt;</code>
 
 >**package:** <code>&lt;press enter, default&gt;</code>
+
+>**REST-Resource-Name** *simple* <code>&lt;or any resource name&gt;</code>
 
 3) *[optional]* Install the necessary web bower components, under directories <code>web/src/main/resources/js</code> and <code>web/src/main/resources/css</code> issue <code>bower install</code>
 
