@@ -80,7 +80,7 @@
   </servlet-mapping>
   
   <listener>
-    <listener-class>org.opendaylight.phoenix.web.ControllerUISessionManager</listener-class>
+    <listener-class>org.opendaylight.toolkit.web.ControllerUISessionManager</listener-class>
   </listener>
 
   <!-- <session-config> // needs further testing

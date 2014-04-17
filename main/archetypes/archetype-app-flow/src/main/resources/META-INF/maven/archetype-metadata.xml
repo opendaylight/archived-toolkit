@@ -67,4 +67,7 @@
       </includes>
     </fileSet>
   </fileSets>
+  <requiredProperties>
+      <requiredProperty key="REST-Resource-Name"/>
+  </requiredProperties>
 </archetype-descriptor>
