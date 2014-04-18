@@ -195,55 +195,6 @@ public class DaylightWebAdmin {
         return result;
     }
 
-    @RequestMapping(value = "/user/modify", method = RequestMethod.POST)
-    @ResponseBody
-    public Status modifyUser(@RequestParam(required = true) String json,
-            @RequestParam(required = true) String action, HttpServletRequest request) {
-
-        IUserManager userManager = (IUserManager) ServiceHelper.getGlobalInstance(IUserManager.class, this);
-        if (userManager == null) {
-            return new Status(StatusCode.NOSERVICE, "User Manager unavailable");
-        }
-
-        if (!authorize(userManager, UserLevel.NETWORKADMIN, request)) {
-            return new Status(StatusCode.UNAUTHORIZED, "Operation not permitted");
-        }
-
-        UserConfig newConfig = gson.fromJson(json, UserConfig.class);
-        List<UserConfig> currentUserConfig = userManager.getLocalUserList();
-        String password = null;
-        byte[] salt = null;
-        String user = newConfig.getUser();
-        for (UserConfig userConfig : currentUserConfig) {
-            if(userConfig.getUser().equals(user)){
-                password = userConfig.getPassword();
-                salt = userConfig.getSalt();
-                break;
-            }
-        }
-        if (password == null) {
-            String msg = String.format("User %s not found in configuration database", user);
-            return new Status(StatusCode.NOTFOUND, msg);
-        }
-
-        //While modifying a user role, the password is not provided from GUI for any user.
-        //The password is stored in hash mode, hence it cannot be retrieved and added to UserConfig object
-        //The hashed password is injected below to the json string containing username and new roles before
-        //converting to UserConfig object.
-        Gson gson = new Gson();
-        json = json.replace("\"roles\"", "\"salt\":" + gson.toJson(salt, salt.getClass()) + ",\"password\":\""+ password + "\",\"roles\"");
-
-        newConfig = gson.fromJson(json, UserConfig.class);
-
-        Status result = userManager.modifyLocalUser(newConfig);
-        if (result.isSuccess()) {
-            DaylightWebUtil.auditlog("Roles of", request.getUserPrincipal().getName(), "updated", newConfig.getUser()
-                    + " to " + newConfig.getRoles().toString());
-        }
-        return result;
-    }
-
-
     @RequestMapping(value = "/users/{username}", method = RequestMethod.POST)
     @ResponseBody
     public Status removeLocalUser(@PathVariable("username") String userName, HttpServletRequest request) {
