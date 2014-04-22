@@ -9,7 +9,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
     initialize : function() {
     },
     setUrlRoot: function() {
-      this.urlRoot = '/${artifactId}/northbound/simple';
+      this.urlRoot = '/${artifactId}/northbound/${artifactId}';
     }
   });
   return SimpleModel;

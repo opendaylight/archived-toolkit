@@ -13,7 +13,7 @@ define(
         initialize: function() {
           var self = this;
           this.collection = new SimpleCollection();
-          this.collection.url = '/${artifactId}/northbound/simple';
+          this.collection.url = '/${artifactId}/northbound/${artifactId}';
           this.collection.fetch({
             success : function(call, response) {
               self.render();
@@ -40,7 +40,7 @@ define(
               foo : $('#simpleFooInput').val(),
               bar : $('#simpleBarInput').val()
             });
-            simpleModel.urlRoot = '/${artifactId}/northbound/simple';
+            simpleModel.urlRoot = '/${artifactId}/northbound/${artifactId}';
             simpleModel.save(null, {
               dataType: 'text',
               success: function(model, response) {

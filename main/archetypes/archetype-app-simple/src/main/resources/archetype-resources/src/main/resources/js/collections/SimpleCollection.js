@@ -7,7 +7,7 @@ define(
     ], function(Backbone, _, SimpleModel) {
       var SimpleCollection = Backbone.Collection.extend({
         model : SimpleModel,
-        url : '/${artifactId}/northbound/simple'
+        url : '/${artifactId}/northbound/${artifactId}'
       });
       return SimpleCollection;
     });

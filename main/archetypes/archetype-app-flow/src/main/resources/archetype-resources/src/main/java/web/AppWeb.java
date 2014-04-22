@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.opendaylight.controller.sal.authorization.UserLevel;
 import org.opendaylight.controller.sal.utils.ServiceHelper;
-import org.opendaylight.phoenix.web.IDaylightWeb;
+import org.opendaylight.toolkit.web.IDaylightWeb;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
