@@ -147,7 +147,7 @@ fi
 ########################################
 # Now add to classpath the OSGi JAR
 ########################################
-CLASSPATH="${basedir}"/lib/org.eclipse.osgi-3.8.1.v20120830-144521.jar
+CLASSPATH=${CLASSPATH}:${basedir}/lib/org.eclipse.osgi-3.8.1.v20120830-144521.jar
 FWCLASSPATH=file:"${basedir}"/lib/org.eclipse.osgi-3.8.1.v20120830-144521.jar
 
 ########################################
@@ -229,7 +229,7 @@ elif [ "${consolestart}" -eq 1 ]; then
         echo "Another instance of controller running, check with $0 -status"
         exit -1
     fi
-    $JAVA_HOME/bin/java ${extraJVMOpts} \
+    java ${extraJVMOpts} \
         ${agentPath} \
         -Djava.io.tmpdir="${iotmpdir}/work/tmp" \
         -Dosgi.install.area="${bdir}" \
