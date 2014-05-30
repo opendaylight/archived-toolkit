@@ -1,0 +1,150 @@
+package org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${lowerApp}.consumer.impl.RpcRegistry;
+import java.util.Map;
+import org.opendaylight.yangtools.yang.binding.Augmentation;
+import java.util.HashMap;
+import java.util.Collections;
+
+
+
+public class ${capitalApp}ConsumerImplBuilder {
+
+    private RpcRegistry _rpcRegistry;
+
+    private final Map<Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>>, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> augmentation = new HashMap<>();
+
+    public ${capitalApp}ConsumerImplBuilder() {
+    } 
+    
+
+
+    public RpcRegistry getRpcRegistry() {
+        return _rpcRegistry;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public <E extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> E getAugmentation(Class<E> augmentationType) {
+        if (augmentationType == null) {
+            throw new IllegalArgumentException("Augmentation Type reference cannot be NULL!");
+        }
+        return (E) augmentation.get(augmentationType);
+    }
+
+    public ${capitalApp}ConsumerImplBuilder setRpcRegistry(RpcRegistry value) {
+    
+        this._rpcRegistry = value;
+        return this;
+    }
+    
+    public ${capitalApp}ConsumerImplBuilder addAugmentation(Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> augmentationType, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl> augmentation) {
+        this.augmentation.put(augmentationType, augmentation);
+        return this;
+    }
+
+    public ${capitalApp}ConsumerImpl build() {
+        return new ${capitalApp}ConsumerImplImpl(this);
+    }
+
+    private static final class ${capitalApp}ConsumerImplImpl implements ${capitalApp}ConsumerImpl {
+
+        public Class<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl> getImplementedInterface() {
+            return org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl.class;
+        }
+
+        private final RpcRegistry _rpcRegistry;
+
+        private final Map<Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>>, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> augmentation;
+
+        private ${capitalApp}ConsumerImplImpl(${capitalApp}ConsumerImplBuilder builder) {
+            this._rpcRegistry = builder.getRpcRegistry();
+            switch (builder.augmentation.size()) {
+             case 0:
+                 this.augmentation = Collections.emptyMap();
+                 break;
+             case 1:
+                 final Map.Entry<Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>>, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> e = builder.augmentation.entrySet().iterator().next();
+                 this.augmentation = Collections.<Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>>, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>>singletonMap(e.getKey(), e.getValue());
+                 break;
+             default :
+                 this.augmentation = new HashMap<>(builder.augmentation);
+             }
+        }
+
+        @Override
+        public RpcRegistry getRpcRegistry() {
+            return _rpcRegistry;
+        }
+        
+        @SuppressWarnings("unchecked")
+        @Override
+        public <E extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> E getAugmentation(Class<E> augmentationType) {
+            if (augmentationType == null) {
+                throw new IllegalArgumentException("Augmentation Type reference cannot be NULL!");
+            }
+            return (E) augmentation.get(augmentationType);
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + ((_rpcRegistry == null) ? 0 : _rpcRegistry.hashCode());
+            result = prime * result + ((augmentation == null) ? 0 : augmentation.hashCode());
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            ${capitalApp}ConsumerImplImpl other = (${capitalApp}ConsumerImplImpl) obj;
+            if (_rpcRegistry == null) {
+                if (other._rpcRegistry != null) {
+                    return false;
+                }
+            } else if(!_rpcRegistry.equals(other._rpcRegistry)) {
+                return false;
+            }
+            if (augmentation == null) {
+                if (other.augmentation != null) {
+                    return false;
+                }
+            } else if(!augmentation.equals(other.augmentation)) {
+                return false;
+            }
+            return true;
+        }
+        
+        @Override
+        public String toString() {
+            StringBuilder builder = new StringBuilder("${capitalApp}ConsumerImpl [");
+            boolean first = true;
+        
+            if (_rpcRegistry != null) {
+                if (first) {
+                    first = false;
+                } else {
+                    builder.append(", ");
+                }
+                builder.append("_rpcRegistry=");
+                builder.append(_rpcRegistry);
+             }
+            if (first) {
+                first = false;
+            } else {
+                builder.append(", ");
+            }
+            builder.append("augmentation=");
+            builder.append(augmentation.values());
+            return builder.append(']').toString();
+        }
+    }
+
+}
