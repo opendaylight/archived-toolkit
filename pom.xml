@@ -22,7 +22,6 @@
     <module>common</module>
     <module>main</module>
     <module>web</module>
-    <module>simple</module>
   </modules>
 
   <build>

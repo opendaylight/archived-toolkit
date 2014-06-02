@@ -1,27 +1,5 @@
 # OpenDaylight Toolkit
 
-App Web Development with NodeJS
--------------------------------
-
-1) web/src/main/java/org/opendaylight/toolkit/web/CorsFilter.java and replace *your-ip* (e.g. http://localhost:8000)
-
-2) mvn clean install project's root directory
-
-3) Go to simple/ and issue mvn clean install
-
-4) Run the controller main/target/main-osgipackage/opendaylight/run.sh
-
-5) In a new window, go to node/ and run the node server *node server.js*
-
->Note: you may need to install missing modules *npm install module_name*
-
-6) Go to http://your-ip:8000 in your browser and start developing from simple/
-
->Disclaimer: you may point node to any app you wish to develop on top of, not just simple, but that will have to be done manually for now
-
->Note: ensure bower components are installed for web/, refer to section below
-
-
 Quick HowTo
 -----------
 
@@ -53,7 +31,6 @@ Quick HowTo
 6) Then start the controller under <code>main/target/main-osgipackage/opendaylight</code> and <code>./run.sh -console</code>
 
 7) *[optional]* If you installed the bower components, you can access the toolkit web UI at <code>http://localhost:8080</code>
-
 
 Troubleshooting
 ---------------
