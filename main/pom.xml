@@ -39,6 +39,10 @@
     <spring.current.version>4.0.2.RELEASE</spring.current.version>
   </properties>
 
+  <modules>
+    <module>archetypes/archetype-md-sal-app-simple</module>
+  </modules>
+
   <dependencies>
     <!-- OpenDaylight Toolkit -->
     <dependency>
