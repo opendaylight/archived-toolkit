@@ -89,7 +89,7 @@
           	</Bundle-Activator>
           </instructions>
           <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
-          <buildDirectory>../main/target/main-osgipackage/opendaylight/plugins/</buildDirectory> <!-- TODO use pom var -->
+          <buildDirectory>../../main/target/main-osgipackage/opendaylight/plugins/</buildDirectory> <!-- TODO use pom var -->
         </configuration>
       </plugin>
     </plugins>

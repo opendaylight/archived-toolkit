@@ -31,6 +31,7 @@
               org.opendaylight.controller.connectionmanager,
               org.opendaylight.controller.switchmanager,
               com.google.gson,
+              com.google.gson.reflect,
               javax.annotation,
               javax.naming,
               javax.servlet,
