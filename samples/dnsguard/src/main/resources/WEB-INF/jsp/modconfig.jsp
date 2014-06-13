@@ -38,7 +38,7 @@
 				</div>		
 				
 				<div>
-				  DB Password: <input name="dbpasswd" value="password" type="text">
+				  DB Password: <input name="dbpasswd" value="password" type="password">
 				</div>		
 				 
 				<div>

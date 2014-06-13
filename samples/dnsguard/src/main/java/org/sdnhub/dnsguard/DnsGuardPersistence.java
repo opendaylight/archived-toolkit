@@ -126,10 +126,17 @@ public class DnsGuardPersistence implements IDnsGuard {
 		// we dont check if the table exist, just create without deleting before
 		try{
 			
+			sqlCreation = sqlCreation.replace("\t","");
+			
+			String[] sqlParts = sqlCreation.split(";");
+			
 			Statement statement = connection.createStatement();
 			
-			statement.execute(sqlCreation);
+			for( String sql : sqlParts){
 
+				statement.execute(sql);
+			}
+			
 			statement.close();
 			
 		} catch (SQLException e) {

@@ -1,4 +1,4 @@
-CREATE TABLE bulkreply (
+CREATE TABLE IF NOT EXISTS bulkreply (
 		  idbulkreply int(11) NOT NULL AUTO_INCREMENT,
 		  request varchar(255) DEFAULT NULL,
 		  type int(11) DEFAULT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE bulkreply (
 		  PRIMARY KEY (idbulkreply)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
-CREATE TABLE config (
+CREATE TABLE IF NOT EXISTS config (
   idconfig int(11) NOT NULL AUTO_INCREMENT,
   configname varchar(16) DEFAULT NULL,
   configval varchar(16) DEFAULT NULL,
@@ -24,6 +24,4 @@ CREATE TABLE config (
 INSERT INTO config (configname, configval)
 SELECT 'localdns', '192.168.0.1'
   FROM dual
-  WHERE NOT EXISTS (SELECT 1 
-                     FROM config 
-                     WHERE configname = 'localdns');
+  WHERE NOT EXISTS (SELECT 1 FROM config WHERE configname = 'localdns');
