@@ -2,9 +2,9 @@
 
 require.config({
   paths: {
-    'jquery': '/js/ext/jquery/dist/jquery',
-    'jquery-ui': '/js/ext/jquery-ui/ui/minified/jquery-ui.min',
-    'underscore': '/js/ext/underscore/underscore'
+    'jquery': '/js/ext/jquery',
+    'jquery-ui': '/js/ext/jquery-ui',
+    'underscore': '/js/ext/underscore'
   },
   shim: {
     'jquery-ui' : {

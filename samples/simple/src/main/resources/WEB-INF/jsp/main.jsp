@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- style -->
-    <link rel="stylesheet" href="/css/ext/pure/pure.css"/>
+    <link rel="stylesheet" href="/css/ext/pure.css"/>
     <link rel="stylesheet" href="/css/phoenix.css"/>
 
     <!-- style app -->
     <link rel="stylesheet" href="/simple/web/css/simple.css"/>
 
     <!-- scripts -->
-    <script data-main="/simple/web/js/main" src="/js/ext/requirejs/require.js"></script>
+    <script data-main="/simple/web/js/main" src="/js/ext/require.js"></script>
   </head>
   <body>
     <h1>FOO</h1>

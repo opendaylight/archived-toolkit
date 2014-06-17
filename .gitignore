@@ -1,6 +1,5 @@
 MANIFEST.MF
 .checkstyle
-ext/
 node_modules/
 
 *.class

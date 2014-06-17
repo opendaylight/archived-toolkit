@@ -1,10 +1,8 @@
 // Filename: phoenix.js
 
 define([
-  'jquery',
-  'underscore',
-  'backbone'
-], function($, _, Backbone) {
+  'jquery'
+], function($) {
   var initialize = function() {
     // attach phoenix overlay bar
     var $overlay = $(document.createElement('div'))

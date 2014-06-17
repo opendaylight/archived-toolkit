@@ -2,9 +2,9 @@
 
 require.config({
   paths: {
-    "jquery": "/js/ext/jquery/dist/jquery.min",
-    "underscore": "/js/ext/underscore/underscore",
-    "backbone": "/js/ext/backbone/backbone",
+    "jquery": "/js/ext/jquery",
+    "underscore": "/js/ext/underscore",
+    "backbone": "/js/ext/backbone",
     "models": "/js/models",
     "views": "/js/views",
     "collections": "/js/collections"
