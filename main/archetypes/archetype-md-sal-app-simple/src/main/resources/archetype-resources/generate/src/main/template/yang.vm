@@ -6,8 +6,8 @@ module $app {
 
     prefix $app;
 
-	import ietf-inet-types { prefix "inet"; revision-date 2010-09-24; }
-	
+    import ietf-inet-types { prefix "inet"; revision-date 2010-09-24; }
+    
     organization "Netconf Central";
 
     contact
@@ -30,7 +30,7 @@ module $app {
       description
         "Top-level container for all application database objects.";
       list entry {
-      	key "entry-id";
+        key "entry-id";
         leaf entry-id {
           type entry-id;
           description "identifier of single list of entries.";

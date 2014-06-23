@@ -18,8 +18,8 @@
   <body>
   <div class="container">
     <h2>${app} application</h2>
-  	<div class="actions" style="padding:15px 0px;">
-  	<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <div class="actions" style="padding:15px 0px;">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
       Add entry
     </button>
     </div>
@@ -45,13 +45,13 @@
             <h4 class="modal-title" id="myModalLabel">Add entry</h4>
           </div>
           <div class="modal-body">
-		    <form id="addEntry" role="form">
-		      #foreach( $field in $fields )
-		        <div class="form-group">
+            <form id="addEntry" role="form">
+              #foreach( $field in $fields )
+                <div class="form-group">
                 <label for="${field}">${field}</label>
                 <input type="text" class="form-control" name="${field}" id="${field}">
               </div>
-		      #end
+              #end
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Save</button>
               </div>
@@ -66,54 +66,54 @@
 <script type="text/javascript">
 jQuery(document).ready(function(){
   jQuery.ajax({
-	  url: window.location.origin +"/restconf/operational/${app}:${app}",
-	  dataType: "json",
-	  success: function(data) { 
-	    jQuery.each(data.${app}.entry, 
-		  function(){ 
-	    	var rowEntry = "<tr><td>" +
-			this['entry-id']+"</td>"
-			#foreach( $field in $fields )
-			  + "<td>" + this.${field} + "</td>"
-	    	#end
-			
-			+"</tr>";
-	    	console.log(rowEntry);
-	    	jQuery(".table tbody").append(rowEntry);
-	    });
-	  },
-	  error : function(){ console.log("no data found");}
+      url: window.location.origin +"/restconf/operational/${app}:${app}",
+      dataType: "json",
+      success: function(data) { 
+        jQuery.each(data.${app}.entry, 
+          function(){ 
+            var rowEntry = "<tr><td>" +
+            this['entry-id']+"</td>"
+            #foreach( $field in $fields )
+              + "<td>" + this.${field} + "</td>"
+            #end
+            
+            +"</tr>";
+            console.log(rowEntry);
+            jQuery(".table tbody").append(rowEntry);
+        });
+      },
+      error : function(){ console.log("no data found");}
   });
 });
 
 jQuery("form").on( "submit", function( event ) {
-	  event.preventDefault();
-	  var entryId = Math.random()*100000000000000000;
-	  var formData = '{"input":{"entryField":[' 
-	  #foreach( $field in $fields )
-	   + '{"key":"${field}", "value":"'+ jQuery("input[name='${field}']").val()+ '"}'
-	    #if($velocityCount != $fields.size()) 
-	      +','
-	    #end
-	  #end
-	  +'], "entryId" : "'+entryId+'" } }';
-	  console.log( jQuery( this ).serialize() );
-	  jQuery.ajax({
-		  url: window.location.origin +"/restconf/operations/${app}:saveEntry",
-		  type: "POST",
-		  headers: { 
-		        'Accept': 'application/json',
-		        'Content-Type': 'application/json' 
-		  },
-		  data: formData,
-		  dataType: "json",
-		  success: function(data) { 
-			  location.reload(true);
-		  },
-		  error : function(){ console.log("Error");}
-	  });
-	  
-	});
+      event.preventDefault();
+      var entryId = Math.random()*100000000000000000;
+      var formData = '{"input":{"entryField":[' 
+      #foreach( $field in $fields )
+       + '{"key":"${field}", "value":"'+ jQuery("input[name='${field}']").val()+ '"}'
+        #if($velocityCount != $fields.size()) 
+          +','
+        #end
+      #end
+      +'], "entryId" : "'+entryId+'" } }';
+      console.log( jQuery( this ).serialize() );
+      jQuery.ajax({
+          url: window.location.origin +"/restconf/operations/${app}:saveEntry",
+          type: "POST",
+          headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+          },
+          data: formData,
+          dataType: "json",
+          success: function(data) { 
+              location.reload(true);
+          },
+          error : function(){ console.log("Error");}
+      });
+      
+    });
 </script>
     
   </body>

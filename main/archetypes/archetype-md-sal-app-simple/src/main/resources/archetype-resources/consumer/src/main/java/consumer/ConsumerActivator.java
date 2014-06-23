@@ -12,6 +12,6 @@ package ${package}.consumer;
 
 
 public class ConsumerActivator {
-	
+    
 
 }
