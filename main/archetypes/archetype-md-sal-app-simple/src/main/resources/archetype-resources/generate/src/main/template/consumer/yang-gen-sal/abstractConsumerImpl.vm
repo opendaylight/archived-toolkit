@@ -10,7 +10,7 @@ public abstract class ${capitalApp}ConsumerImpl extends ModuleType
 
     public ${capitalApp}ConsumerImpl() {
     }
-    
+
 
 
 

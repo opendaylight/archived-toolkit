@@ -2,9 +2,9 @@
 package ${package}.generate;
 
 public class ProviderField {
-  
+
   private String name;
-  
+
   private String method;
 
   public ProviderField(String name, String method) {

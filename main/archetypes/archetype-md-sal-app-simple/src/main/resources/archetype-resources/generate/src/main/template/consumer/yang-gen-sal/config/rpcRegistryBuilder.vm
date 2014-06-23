@@ -15,8 +15,8 @@ public class RpcRegistryBuilder {
     private final Map<Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${lowerApp}.consumer.impl.RpcRegistry>>, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${lowerApp}.consumer.impl.RpcRegistry>> augmentation = new HashMap<>();
 
     public RpcRegistryBuilder() {
-    } 
-    
+    }
+
     public RpcRegistryBuilder(org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.rev130405.ServiceRef arg) {
         this._name = arg.getName();
         this._type = arg.getType();
@@ -49,11 +49,11 @@ public class RpcRegistryBuilder {
     public Object getName() {
         return _name;
     }
-    
+
     public Class<? extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.rev130405.ServiceType> getType() {
         return _type;
     }
-    
+
     @SuppressWarnings("unchecked")
     public <E extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${lowerApp}.consumer.impl.RpcRegistry>> E getAugmentation(Class<E> augmentationType) {
         if (augmentationType == null) {
@@ -63,17 +63,17 @@ public class RpcRegistryBuilder {
     }
 
     public RpcRegistryBuilder setName(Object value) {
-    
+
         this._name = value;
         return this;
     }
-    
+
     public RpcRegistryBuilder setType(Class<? extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.rev130405.ServiceType> value) {
-    
+
         this._type = value;
         return this;
     }
-    
+
     public RpcRegistryBuilder addAugmentation(Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${lowerApp}.consumer.impl.RpcRegistry>> augmentationType, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${lowerApp}.consumer.impl.RpcRegistry> augmentation) {
         this.augmentation.put(augmentationType, augmentation);
         return this;
@@ -114,12 +114,12 @@ public class RpcRegistryBuilder {
         public Object getName() {
             return _name;
         }
-        
+
         @Override
         public Class<? extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.rev130405.ServiceType> getType() {
             return _type;
         }
-        
+
         @SuppressWarnings("unchecked")
         @Override
         public <E extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${lowerApp}.consumer.impl.RpcRegistry>> E getAugmentation(Class<E> augmentationType) {
@@ -174,12 +174,12 @@ public class RpcRegistryBuilder {
             }
             return true;
         }
-        
+
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder("RpcRegistry [");
             boolean first = true;
-        
+
             if (_name != null) {
                 if (first) {
                     first = false;

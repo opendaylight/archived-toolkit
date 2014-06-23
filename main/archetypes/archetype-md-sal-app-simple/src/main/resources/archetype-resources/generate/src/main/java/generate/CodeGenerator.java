@@ -26,19 +26,19 @@ import org.json.simple.parser.JSONParser;
  *
  */
 public class CodeGenerator {
-  
+
   private static String basePackage = "${package}";
-  
+
   /**
    * This method expects two arguments application name and fields for application,
    * which it will receive from command line, while generating the project.
    * If user does not specify those fields, a default value will be picked up.
-   * arg[1] should be a valid JSON, otherwise, ParseException will be thrown. 
-   * Second argument should be a valid string  
+   * arg[1] should be a valid JSON, otherwise, ParseException will be thrown.
+   * Second argument should be a valid string
    * @param args
    * @throws Exception
    */
-  public static void main(String[] args) throws Exception {  
+  public static void main(String[] args) throws Exception {
     //TODO : Do some preconditions check
     JSONParser parser = new JSONParser();
     Object obj = parser.parse(args[1]);
@@ -55,8 +55,8 @@ public class CodeGenerator {
     processWebViewTemplate(args[0], fieldKeys, ve);
     processInitialConfig(args[0], ve);
   }
-  
-  
+
+
   private static void processModelYangTemplate(String appName, Set fieldKeys, VelocityEngine ve, JSONObject jsonObject)
       throws Exception{
     /*  next, get the Template  */
@@ -86,7 +86,7 @@ public class CodeGenerator {
     CodeGeneratorUtil.writeFile(path, context, template);
   }
 
-  
+
   private static void processWebViewTemplate(String appName, Set fieldKeys, VelocityEngine ve)  throws Exception{
     /*  next, get the Template  */
     Template template = ve.getTemplate( "view.vm" );

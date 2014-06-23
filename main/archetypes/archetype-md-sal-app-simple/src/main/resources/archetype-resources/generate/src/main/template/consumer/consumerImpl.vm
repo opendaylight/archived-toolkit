@@ -15,22 +15,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This is a auto generated class which calls provider service to create an entry in 
+ * This is a auto generated class which calls provider service to create an entry in
  * data store
  * @author harmansingh
  *
  */
 public class ${capitalApp}ConsumerImpl implements ${capitalApp}ConsumerService {
-  
+
   private static final Logger log = LoggerFactory.getLogger(${capitalApp}ConsumerImpl.class);
-  
+
   ${capitalApp}Service service;
   Random rand = new Random();
-  
+
   public ${capitalApp}ConsumerImpl(${capitalApp}Service service) {
     this.service = service;
   }
-  
+
   public void createEntry(Map<String, String> data) {
     if(data == null || data.isEmpty()) {
       log.debug("empty input data");
@@ -43,7 +43,7 @@ public class ${capitalApp}ConsumerImpl implements ${capitalApp}ConsumerService {
       fieldBuilder.setValue(data.get(key));
       fields.add(fieldBuilder.build());
     }
-    
+
     SaveEntryInputBuilder inputbuilder = new SaveEntryInputBuilder();
     inputbuilder.setEntryId(String.valueOf(rand.nextInt(1000000000)));
     inputbuilder.setEntryField(fields);
@@ -55,6 +55,6 @@ public class ${capitalApp}ConsumerImpl implements ${capitalApp}ConsumerService {
     } catch (InterruptedException | ExecutionException e) {
       e.printStackTrace();
     }
-  } 
+  }
 
 }

@@ -5,7 +5,7 @@
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
-  
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <nexusproxy>http://nexus.opendaylight.org/content</nexusproxy>
@@ -25,14 +25,14 @@
     <salGeneratorPath>src/main/yang-gen-sal</salGeneratorPath>
     <config.version>0.2.5-SNAPSHOT</config.version>
   </properties>
-  
+
   <scm>
       <connection>scm:git:ssh://git.opendaylight.org:29418/controller.git</connection>
       <developerConnection>scm:git:ssh://git.opendaylight.org:29418/controller.git</developerConnection>
       <url>https://wiki.opendaylight.org/view/OpenDaylight_Controller:MD-SAL</url>
       <tag>HEAD</tag>
   </scm>
-  
+
     <pluginRepositories>
     <!-- OpenDayLight Repo Mirror -->
     <pluginRepository>
@@ -88,7 +88,7 @@
       </releases>
     </repository>
   </repositories>
-  
+
   <distributionManagement>
     <!-- OpenDayLight Released artifact -->
     <repository>
@@ -108,7 +108,7 @@
   </distributionManagement>
 
   <build>
-  
+
     <pluginManagement>
       <plugins>
         <plugin>

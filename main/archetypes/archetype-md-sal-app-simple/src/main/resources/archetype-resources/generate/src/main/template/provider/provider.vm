@@ -30,15 +30,15 @@ import org.slf4j.LoggerFactory;
  * @author harmansingh
  *
  */
- 
+
 public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseable {
 
     private static final Logger log = LoggerFactory.getLogger(${capitalApp}Provider.class);
-    
+
     private DataBrokerService dataService;
-    
+
     private final ExecutorService executor;
-    
+
     public DataBrokerService getDataService() {
       return dataService;
     }
@@ -50,15 +50,15 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
     public ${capitalApp}Provider() {
       executor = Executors.newFixedThreadPool(1);
     }
-    
+
      /**
      * This is an example to show how yang based RPC can be used to perform an operation.
-     * Here this is saving data in data store. This code also gives insight into how we can 
+     * Here this is saving data in data store. This code also gives insight into how we can
      * insert data into data store
      * @param input
      * @return
      */
-     
+
     @Override
     public Future<RpcResult<Void>> saveEntry(SaveEntryInput input) {
       log.debug("Saving the entry");
@@ -71,7 +71,7 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
       EntryBuilder entryBuilder = new EntryBuilder();
       entryBuilder.setKey(new EntryKey(new EntryId(input.getEntryId())));
       List<EntryField> entryFields = input.getEntryField();
-      
+
       for(EntryField field : entryFields) {
         String key = field.getKey();
         String value = field.getValue();
@@ -80,7 +80,7 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
         }
         switch(key) {
           #foreach( $field in $fields )
-          case "$field.name" : 
+          case "$field.name" :
             entryBuilder.${field.method}(value);
             break;
           #end
@@ -94,7 +94,7 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
         public void close() throws Exception {
             executor.shutdown();
         }
-    
+
     private class SaveEntry implements Callable<RpcResult<Void>> {
 
       Entry entry;
@@ -105,7 +105,7 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
 
       @Override
       public RpcResult<Void> call() throws InterruptedException {
-        // Each entry will be identifiable by a unique key, we have to create that identifier 
+        // Each entry will be identifiable by a unique key, we have to create that identifier
         InstanceIdentifier.InstanceIdentifierBuilder<Entry> entryIdBuilder =
             InstanceIdentifier.<${capitalApp}>builder(${capitalApp}.class)
             .child(Entry.class, entry.getKey());
@@ -117,5 +117,5 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
           return Rpcs.<Void> getRpcResult(true, null, Collections.<RpcError> emptySet());
       }
    }
-    
+
 }

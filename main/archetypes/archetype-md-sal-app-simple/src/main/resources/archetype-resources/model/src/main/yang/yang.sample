@@ -7,7 +7,7 @@ module task {
     prefix task;
 
     import ietf-inet-types { prefix "inet"; revision-date 2010-09-24; }
-    
+
     organization "Netconf Central";
 
     contact
@@ -20,12 +20,12 @@ module task {
       description
         "MD-SAL sample app";
     }
-    
+
     typedef entry-id {
       type inet:uri;
       description "An identifier for app entry.";
     }
-    
+
     container task {
       description
         "Top-level container for all application database objects.";
@@ -43,7 +43,7 @@ module task {
         }
               }
     }
-    
+
     rpc saveEntry {
      description " Method to add a new entry into datastore.";
      input {
@@ -52,18 +52,18 @@ module task {
            type string;
            description "name of the field";
          }
-         
+
          leaf value {
            type string;
            description "value of the field";
          }
        }
-       
+
        leaf entryId {
          type string;
          description "entry Identifier";
        }
      }
     }
-    
+
 }

@@ -20,7 +20,7 @@ import org.apache.velocity.VelocityContext;
  *
  */
 public class CodeGeneratorUtil {
-  
+
   public static void writeFile(String path, VelocityContext context, Template template) throws Exception {
     File file = new File(path);
     File parent = file.getParentFile();
@@ -36,7 +36,7 @@ public class CodeGeneratorUtil {
     template.merge( context, bw );
     bw.close();
   }
-  
+
   public static String capitalizeFirstLetter(String original){
     if(original.length() == 0)
         return original;

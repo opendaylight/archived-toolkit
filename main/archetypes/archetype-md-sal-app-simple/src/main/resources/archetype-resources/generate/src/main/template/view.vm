@@ -13,7 +13,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   </head>
   <body>
   <div class="container">
@@ -33,7 +33,7 @@
           #end
         </tr>
       </thead>
-      <tbody> 
+      <tbody>
       </tbody>
     </table>
     </div>
@@ -61,22 +61,22 @@
     </div>
   </div>
   </div>
-  
+
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
   jQuery.ajax({
       url: window.location.origin +"/restconf/operational/${app}:${app}",
       dataType: "json",
-      success: function(data) { 
-        jQuery.each(data.${app}.entry, 
-          function(){ 
+      success: function(data) {
+        jQuery.each(data.${app}.entry,
+          function(){
             var rowEntry = "<tr><td>" +
             this['entry-id']+"</td>"
             #foreach( $field in $fields )
               + "<td>" + this.${field} + "</td>"
             #end
-            
+
             +"</tr>";
             console.log(rowEntry);
             jQuery(".table tbody").append(rowEntry);
@@ -89,10 +89,10 @@ jQuery(document).ready(function(){
 jQuery("form").on( "submit", function( event ) {
       event.preventDefault();
       var entryId = Math.random()*100000000000000000;
-      var formData = '{"input":{"entryField":[' 
+      var formData = '{"input":{"entryField":['
       #foreach( $field in $fields )
        + '{"key":"${field}", "value":"'+ jQuery("input[name='${field}']").val()+ '"}'
-        #if($velocityCount != $fields.size()) 
+        #if($velocityCount != $fields.size())
           +','
         #end
       #end
@@ -101,20 +101,20 @@ jQuery("form").on( "submit", function( event ) {
       jQuery.ajax({
           url: window.location.origin +"/restconf/operations/${app}:saveEntry",
           type: "POST",
-          headers: { 
+          headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json'
           },
           data: formData,
           dataType: "json",
-          success: function(data) { 
+          success: function(data) {
               location.reload(true);
           },
           error : function(){ console.log("Error");}
       });
-      
+
     });
 </script>
-    
+
   </body>
 </html>

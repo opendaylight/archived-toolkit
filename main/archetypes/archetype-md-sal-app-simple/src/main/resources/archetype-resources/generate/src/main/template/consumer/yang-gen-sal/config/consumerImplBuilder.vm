@@ -14,14 +14,14 @@ public class ${capitalApp}ConsumerImplBuilder {
     private final Map<Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>>, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> augmentation = new HashMap<>();
 
     public ${capitalApp}ConsumerImplBuilder() {
-    } 
-    
+    }
+
 
 
     public RpcRegistry getRpcRegistry() {
         return _rpcRegistry;
     }
-    
+
     @SuppressWarnings("unchecked")
     public <E extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> E getAugmentation(Class<E> augmentationType) {
         if (augmentationType == null) {
@@ -31,11 +31,11 @@ public class ${capitalApp}ConsumerImplBuilder {
     }
 
     public ${capitalApp}ConsumerImplBuilder setRpcRegistry(RpcRegistry value) {
-    
+
         this._rpcRegistry = value;
         return this;
     }
-    
+
     public ${capitalApp}ConsumerImplBuilder addAugmentation(Class<? extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> augmentationType, Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl> augmentation) {
         this.augmentation.put(augmentationType, augmentation);
         return this;
@@ -74,7 +74,7 @@ public class ${capitalApp}ConsumerImplBuilder {
         public RpcRegistry getRpcRegistry() {
             return _rpcRegistry;
         }
-        
+
         @SuppressWarnings("unchecked")
         @Override
         public <E extends Augmentation<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.controller.config.${lowerApp}.consumer.impl.rev140523.modules.module.configuration.${capitalApp}ConsumerImpl>> E getAugmentation(Class<E> augmentationType) {
@@ -121,12 +121,12 @@ public class ${capitalApp}ConsumerImplBuilder {
             }
             return true;
         }
-        
+
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder("${capitalApp}ConsumerImpl [");
             boolean first = true;
-        
+
             if (_rpcRegistry != null) {
                 if (first) {
                     first = false;
