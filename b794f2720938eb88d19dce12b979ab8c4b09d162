@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa82b9bf_b829f138",
+        "filename": "main/archetypes/archetype-md-sal-app-simple/src/main/resources/archetype-resources/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1840
+      },
+      "writtenOn": "2014-06-23T20:53:03Z",
+      "side": 1,
+      "message": "Whitespace or tab.",
+      "revId": "b794f2720938eb88d19dce12b979ab8c4b09d162",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
