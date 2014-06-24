@@ -15,9 +15,9 @@ import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.SaveEntryInput
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${capitalApp};
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${capitalApp}Service;
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.saveentry.input.EntryField;
-import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${app}.Entry;
-import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${app}.EntryBuilder;
-import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${app}.EntryKey;
+import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${lowerApp}.Entry;
+import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${lowerApp}.EntryBuilder;
+import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${lowerApp}.EntryKey;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 import org.opendaylight.yangtools.yang.common.RpcError;
 import org.opendaylight.yangtools.yang.common.RpcResult;

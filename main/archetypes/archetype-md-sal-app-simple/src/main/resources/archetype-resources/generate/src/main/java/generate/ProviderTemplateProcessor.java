@@ -34,6 +34,8 @@ public class ProviderTemplateProcessor {
     Template template = ve.getTemplate( "provider/provider.vm" );
     /*  create a context and add data */
     VelocityContext context = CodeGeneratorUtil.createBasicVelocityContext(appName);
+    String lowerApp = appName.toLowerCase();
+    context.put("lowerApp", lowerApp);
     List<ProviderField> fields = new ArrayList<>();
     for(Object fieldKey : fieldKeys) {
       String name = (String)fieldKey;
