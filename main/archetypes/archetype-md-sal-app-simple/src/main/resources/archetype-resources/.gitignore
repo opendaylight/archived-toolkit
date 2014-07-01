@@ -1,0 +1,31 @@
+
+#####standard .git ignore entries#####
+
+*.class
+**/target
+bin/
+dist
+workspace
+*~
+target
+target-ide
+.classpath
+.project
+.settings
+MANIFEST.MF
+opendaylight/northbound/integrationtest/logs/*
+*.ipr
+*.iml
+*.iws
+.idea
+yang-gen-config
+yang-gen-sal
+classes
+out/
+.externalToolBuilders
+maven-eclipse.xml
+.DS_STORE
+.metadata
+
+#####Archetype .git ignore entries#######
+generate

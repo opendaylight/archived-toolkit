@@ -28,7 +28,13 @@ import org.json.simple.parser.JSONParser;
 public class CodeGenerator {
 
   private static String basePackage = "${package}";
-
+  /** 
+   * This variable holds the relative path from the working directory to the root folder where
+   * we want to generate the specified files. Since the CodeGenerator is expected to be invoked from
+   * the child "generate" folder, we will set the path to root to be its parent.  
+   */
+  public static final String PATH_TO_ROOT_DIR = "../";
+  
   /**
    * This method expects two arguments application name and fields for application,
    * which it will receive from command line, while generating the project.
@@ -72,7 +78,7 @@ public class CodeGenerator {
     context.put("fields", fields);
     /* now render the template into a File */
     String path = "model/src/main/yang/"+appName + ".yang";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile(PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processInitialConfig(String appName, VelocityEngine ve) throws Exception{
@@ -83,7 +89,7 @@ public class CodeGenerator {
     context.put("app", appName);
     /* now render the template into a File */
     String path = "configuration/initial/05-"+appName + "-sample.xml";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile(PATH_TO_ROOT_DIR, path, context, template);
   }
 
 
@@ -96,7 +102,7 @@ public class CodeGenerator {
     context.put("app", appName);
     context.put("capitalApp", CodeGeneratorUtil.capitalizeFirstLetter(appName));
     String path = "web/src/main/resources/WEB-INF/pages/view.jsp";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile(PATH_TO_ROOT_DIR, path, context, template);
   }
 
 }

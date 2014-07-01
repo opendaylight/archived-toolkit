@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-name="md-sal-apps"
-    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
+<archetype-descriptor
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+  name="md-sal-apps"
+  xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <requiredProperties>
     <requiredProperty key="appName">
       <defaultValue>task</defaultValue>
@@ -13,22 +13,6 @@ name="md-sal-apps"
     </requiredProperty>
   </requiredProperties>
   <modules>
-    <module id="sample-generate" dir="generate" name="sample-generate">
-    <fileSets>
-     <fileSet filtered="true" packaged="true" encoding="UTF-8">
-        <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/template</directory>
-          <includes>
-            <include>**/*.vm</include>
-          </includes>
-        </fileSet>
-  </fileSets>
-    </module>
     <module id="sample-model" dir="model" name="sample-model">
       <fileSets>
         <fileSet encoding="UTF-8">
@@ -95,4 +79,37 @@ name="md-sal-apps"
       </fileSets>
     </module>
   </modules>
+  
+  <fileSets>
+    <!-- explicitly copy over the .gitignore file to ignore the generate project -->  
+    <fileSet>
+      <directory></directory>
+      <includes>
+        <include>.gitignore</include>
+      </includes>
+    </fileSet>
+    
+    <!--  The following 3 file sets copy over the "generate" project, which is a one time use
+          project which should be used to generate additional files that are needed. 
+          We do NOT want this project included in the final project so we need to manually copy
+          the files instead of calling it a "module" like we do for other folders above. -->
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>generate/src/main/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>generate/src/main/template</directory>
+      <includes>
+        <include>**/*.vm</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>generate</directory>
+      <includes>
+        <include>pom.xml</include>
+      </includes>
+    </fileSet>
+  </fileSets>
 </archetype-descriptor>

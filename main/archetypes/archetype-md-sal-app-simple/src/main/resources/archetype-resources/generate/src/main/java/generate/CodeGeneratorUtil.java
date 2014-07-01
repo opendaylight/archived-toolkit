@@ -20,9 +20,14 @@ import org.apache.velocity.VelocityContext;
  *
  */
 public class CodeGeneratorUtil {
-
-  public static void writeFile(String path, VelocityContext context, Template template) throws Exception {
-    File file = new File(path);
+  
+  /**
+   * Writes a file in the given <code>path</give>, using the <code>generateLocation</code> as
+   * the working (parent) directory. 
+   */
+  public static void writeFile(String generateLocation,
+                               String path, VelocityContext context, Template template) throws Exception {
+    File file = new File( generateLocation, path);
     File parent = file.getParentFile();
     if(!parent.exists()){
       parent.mkdirs();

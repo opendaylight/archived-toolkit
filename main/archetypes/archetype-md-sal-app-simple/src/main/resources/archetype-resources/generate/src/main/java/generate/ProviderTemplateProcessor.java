@@ -46,14 +46,14 @@ public class ProviderTemplateProcessor {
     context.put("fields", fields);
     context.put("package", basePackage);
     String path = "provider/src/main/java/"+ basePackage.replaceAll("\\.", "/") + "/provider/"+capitalAppName+"Provider.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderYang(String appName, VelocityEngine ve)  throws Exception {
     Template template = ve.getTemplate( "provider/providerYang.vm" );
     VelocityContext context = CodeGeneratorUtil.createBasicVelocityContext(appName);
     String path = "provider/src/main/yang/"+ appName + "-provider-impl.yang";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalImpl(String appName, VelocityEngine ve)  throws Exception {
@@ -64,7 +64,7 @@ public class ProviderTemplateProcessor {
 
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/" + CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderImpl.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalYangModImpl(String appName, VelocityEngine ve)  throws Exception {
@@ -74,7 +74,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/$YangModuleInfoImpl.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalYangBinding(String appName, VelocityEngine ve)  throws Exception {
@@ -84,7 +84,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/$YangModelBindingProvider.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalConfImpl(String appName, VelocityEngine ve)  throws Exception {
@@ -94,7 +94,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/modules/module/configuration/"+ CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderImpl.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalConfBuilder(String appName, VelocityEngine ve)  throws Exception {
@@ -104,7 +104,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/modules/module/configuration/"+ CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderImplBuilder.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalDataBroker(String appName, VelocityEngine ve)  throws Exception {
@@ -114,7 +114,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/modules/module/configuration/"+ lowerApp +"/provider/impl/DataBroker.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalBrokerBuilder(String appName, VelocityEngine ve)  throws Exception {
@@ -124,7 +124,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/modules/module/configuration/"+ lowerApp +"/provider/impl/DataBrokerBuilder.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalRpc(String appName, VelocityEngine ve)  throws Exception {
@@ -134,7 +134,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/modules/module/configuration/"+ lowerApp +"/provider/impl/RpcRegistry.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderSalRpcBuilder(String appName, VelocityEngine ve)  throws Exception {
@@ -144,7 +144,7 @@ public class ProviderTemplateProcessor {
     context.put("lowerApp", lowerApp);
     String path = "provider/src/main/yang-gen-sal/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/controller/config/"
         + lowerApp + "/provider/impl/rev140523/modules/module/configuration/"+ lowerApp +"/provider/impl/RpcRegistryBuilder.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderAbstractModule(String appName, VelocityEngine ve)  throws Exception {
@@ -152,7 +152,7 @@ public class ProviderTemplateProcessor {
     VelocityContext context = CodeGeneratorUtil.createBasicVelocityContext(appName);
     String path = "provider/src/main/yang-gen-config/org/opendaylight/controller/config/yang/config/"
         + appName + "_provider/impl/Abstract"+ CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderModule.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderAbstractModuleFactory(String appName, VelocityEngine ve)  throws Exception {
@@ -160,7 +160,7 @@ public class ProviderTemplateProcessor {
     VelocityContext context = CodeGeneratorUtil.createBasicVelocityContext(appName);
     String path = "provider/src/main/yang-gen-config/org/opendaylight/controller/config/yang/config/"
         + appName + "_provider/impl/Abstract"+ CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderModuleFactory.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderMXBean(String appName, VelocityEngine ve)  throws Exception {
@@ -168,7 +168,7 @@ public class ProviderTemplateProcessor {
     VelocityContext context = CodeGeneratorUtil.createBasicVelocityContext(appName);
     String path = "provider/src/main/yang-gen-config/org/opendaylight/controller/config/yang/config/"
         + appName + "_provider/impl/"+ CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderModuleMXBean.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderModule(String appName, VelocityEngine ve)  throws Exception {
@@ -177,7 +177,7 @@ public class ProviderTemplateProcessor {
     context.put("package", basePackage);
     String path = "provider/src/main/java/org/opendaylight/controller/config/yang/config/"
         + appName + "_provider/impl/"+ CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderModule.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 
   private static void processProviderModuleFactory(String appName, VelocityEngine ve)  throws Exception {
@@ -185,6 +185,6 @@ public class ProviderTemplateProcessor {
     VelocityContext context = CodeGeneratorUtil.createBasicVelocityContext(appName);
     String path = "provider/src/main/java/org/opendaylight/controller/config/yang/config/"
         + appName + "_provider/impl/"+ CodeGeneratorUtil.capitalizeFirstLetter(appName) +"ProviderModuleFactory.java";
-    CodeGeneratorUtil.writeFile(path, context, template);
+    CodeGeneratorUtil.writeFile( CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 }
