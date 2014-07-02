@@ -1,31 +1,40 @@
-
 #####standard .git ignore entries#####
 
-*.class
-**/target
-bin/
-dist
-workspace
-*~
-target
-target-ide
+## IDE Specific Files ##
 .classpath
 .project
 .settings
+.idea
+.externalToolBuilders
+maven-eclipse.xml
+workspace
+
+## Compilation Files ##
+*.class
+**/target
+target
+target-ide
 MANIFEST.MF
-opendaylight/northbound/integrationtest/logs/*
+
+## Misc Ignores (OS specific etc) ##
+bin/
+dist
+*~
 *.ipr
 *.iml
 *.iws
-.idea
-yang-gen-config
-yang-gen-sal
 classes
 out/
-.externalToolBuilders
-maven-eclipse.xml
 .DS_STORE
 .metadata
 
-#####Archetype .git ignore entries#######
+## Folders which contain auto generated source code ##
+yang-gen-config
+yang-gen-sal
+
+
+
+#####Archetype specific .git ignore entries#######
 generate
+Archetype_Next_Steps.README
+
