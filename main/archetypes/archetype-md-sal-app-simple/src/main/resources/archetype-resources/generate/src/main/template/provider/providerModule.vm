@@ -1,8 +1,10 @@
 package org.opendaylight.controller.config.yang.config.${app}_provider.impl;
 
 import ${package}.provider.${capitalApp}Provider;
+import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.sal.binding.api.BindingAwareBroker;
-import org.opendaylight.controller.sal.binding.api.data.DataProviderService;
+import org.opendaylight.controller.sal.binding.api.NotificationProviderService;
+import org.opendaylight.controller.sal.binding.api.RpcProviderRegistry;
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${capitalApp}Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +29,21 @@ public class ${capitalApp}ProviderModule extends org.opendaylight.controller.con
     public AutoCloseable createInstance() {
         final ${capitalApp}Provider appProvider = new ${capitalApp}Provider();
 
-        DataProviderService dataBrokerService = getDataBrokerDependency();
+        DataBroker dataBrokerService = getDataBrokerDependency();
         appProvider.setDataService(dataBrokerService);
-        final BindingAwareBroker.RpcRegistration<${capitalApp}Service> rpcRegistration = getRpcRegistryDependency()
-                .addRpcImplementation(${capitalApp}Service.class, appProvider);
+        
+        RpcProviderRegistry rpcRegistryDependency = getRpcRegistryDependency();
+        final BindingAwareBroker.RpcRegistration<${capitalApp}Service> rpcRegistration = 
+                                rpcRegistryDependency
+                                    .addRpcImplementation(${capitalApp}Service.class, appProvider);
 
+        //retrieves the notification service for publishing notifications
+        NotificationProviderService notificationService = getNotificationServiceDependency();
+        
+                
         // Wrap toaster as AutoCloseable and close registrations to md-sal at
         // close()
-        final class AutoCloseableToaster implements AutoCloseable {
+        final class CloseResources implements AutoCloseable {
 
             @Override
             public void close() throws Exception {
@@ -44,7 +53,7 @@ public class ${capitalApp}ProviderModule extends org.opendaylight.controller.con
             }
         }
 
-        AutoCloseable ret = new AutoCloseableToaster();
+        AutoCloseable ret = new CloseResources();
         log.info("${capitalApp}Provider (instance {}) initialized.", ret);
         return ret;
     }
