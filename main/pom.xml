@@ -747,4 +747,9 @@
       </plugins>
     </pluginManagement>
   </build>
+
+ <modules>
+    <module>archetypes/archetype-md-sal-app-simple</module>
+ </modules>
+
 </project>
