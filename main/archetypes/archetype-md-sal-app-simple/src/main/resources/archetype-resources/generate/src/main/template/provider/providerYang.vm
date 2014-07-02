@@ -25,6 +25,7 @@ module ${app}-provider-impl {
     }
 
     // Augments the 'configuration' choice node under modules/module.
+    // We consume the three main services, RPCs, DataStore, and Notifications
     augment "/config:modules/config:module/config:configuration" {
         case ${app}-provider-impl {
             when "/config:modules/config:module/config:type = '${app}-provider-impl'";
@@ -38,11 +39,20 @@ module ${app}-provider-impl {
                 }
             }
 
+            container notification-service {
+                uses config:service-ref {
+                    refine type {
+                        mandatory true;
+                        config:required-identity mdsal:binding-notification-service;
+                    }
+                }
+            }
+
             container data-broker {
                 uses config:service-ref {
                     refine type {
                         mandatory false;
-                        config:required-identity mdsal:binding-data-broker;
+                        config:required-identity mdsal:binding-async-data-broker;
                     }
                 }
             }

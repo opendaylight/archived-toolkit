@@ -28,13 +28,13 @@ import org.json.simple.parser.JSONParser;
 public class CodeGenerator {
 
   private static String basePackage = "${package}";
-  /** 
+  /**
    * This variable holds the relative path from the working directory to the root folder where
    * we want to generate the specified files. Since the CodeGenerator is expected to be invoked from
-   * the child "generate" folder, we will set the path to root to be its parent.  
+   * the child "generate" folder, we will set the path to root to be its parent.
    */
   public static final String PATH_TO_ROOT_DIR = "../";
-  
+
   /**
    * This method expects two arguments application name and fields for application,
    * which it will receive from command line, while generating the project.
@@ -59,7 +59,8 @@ public class CodeGenerator {
     ProviderTemplateProcessor.processProviderTemplates(args[0], fieldKeys, ve);
     ConsumerTemplateProcessor.processConsumerTemplates(args[0], fieldKeys, ve);
     processWebViewTemplate(args[0], fieldKeys, ve);
-    processInitialConfig(args[0], ve);
+    //processInitialConfig("initialConfig_consumer.vm", "06-consumer-"+args[0] + "-sample.xml", args[0], ve);
+    //processInitialConfig("initialConfig_provider.vm", "05-provider-"+args[0] + "-sample.xml", args[0], ve);
   }
 
 
@@ -81,14 +82,17 @@ public class CodeGenerator {
     CodeGeneratorUtil.writeFile(PATH_TO_ROOT_DIR, path, context, template);
   }
 
-  private static void processInitialConfig(String appName, VelocityEngine ve) throws Exception{
+  private static void processInitialConfig(String templateName,
+                                           String outputName,
+                                           String appName,
+                                           VelocityEngine ve) throws Exception{
     /*  next, get the Template  */
-    Template template = ve.getTemplate( "initialConfig.vm" );
+    Template template = ve.getTemplate( templateName );
     /*  create a context and add data */
     VelocityContext context = new VelocityContext();
     context.put("app", appName);
     /* now render the template into a File */
-    String path = "configuration/initial/05-"+appName + "-sample.xml";
+    String path = "configuration/initial/" + outputName;
     CodeGeneratorUtil.writeFile(PATH_TO_ROOT_DIR, path, context, template);
   }
 
