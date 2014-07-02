@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.opendaylight.controller.sal.binding.api.data.DataBrokerService;
+import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.sal.binding.api.data.DataModificationTransaction;
 import org.opendaylight.controller.sal.common.util.Rpcs;
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.EntryId;
@@ -35,15 +35,15 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
 
     private static final Logger log = LoggerFactory.getLogger(${capitalApp}Provider.class);
 
-    private DataBrokerService dataService;
+    private DataBroker dataService;
 
     private final ExecutorService executor;
 
-    public DataBrokerService getDataService() {
+    public DataBroker getDataService() {
       return dataService;
     }
 
-    public void setDataService(DataBrokerService dataService) {
+    public void setDataService(DataBroker dataService) {
       this.dataService = dataService;
     }
 
@@ -111,9 +111,9 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
             .child(Entry.class, entry.getKey());
         InstanceIdentifier<Entry> path = entryIdBuilder.toInstance();
         // Place entry in data store tree
-        final DataModificationTransaction it = dataService.beginTransaction();
-        it.putOperationalData(path, entry);
-        it.commit();
+        //final DataModificationTransaction it = dataService.beginTransaction();
+        //it.putOperationalData(path, entry);
+        //it.commit();
           return Rpcs.<Void> getRpcResult(true, null, Collections.<RpcError> emptySet());
       }
    }
