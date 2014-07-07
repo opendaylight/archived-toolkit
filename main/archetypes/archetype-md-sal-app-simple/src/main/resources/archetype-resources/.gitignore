@@ -29,3 +29,5 @@ maven-eclipse.xml
 
 #####Archetype .git ignore entries#######
 generate
+Archetype_Next_Steps.READ_ME
+

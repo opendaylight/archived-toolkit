@@ -86,6 +86,7 @@
       <directory></directory>
       <includes>
         <include>.gitignore</include>
+        <include>Archetype_Next_Steps.README</include>
       </includes>
     </fileSet>
     
