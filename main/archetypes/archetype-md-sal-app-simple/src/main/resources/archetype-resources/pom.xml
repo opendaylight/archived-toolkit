@@ -120,6 +120,8 @@
             <target>${java.version.target}</target>
           </configuration>
         </plugin>
+        <!--  tells eclipse to import these folders into the package explorer as "source" folders
+              which allows eclipse to resolve the classes correctly during an eclipse build -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
@@ -140,6 +142,26 @@
               </configuration>
             </execution>
           </executions>
+        </plugin>
+        <!--  cleans up auto generated code  -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>${jmxGeneratorPath}</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+              </fileset>
+              <fileset>
+                <directory>${salGeneratorPath}</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+              </fileset>
+            </filesets>
+          </configuration>
         </plugin>
 
         <!-- Ignore/Execute plugin execution -->
