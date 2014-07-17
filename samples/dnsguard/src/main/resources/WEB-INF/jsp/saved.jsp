@@ -9,14 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- style -->
-    <link rel="stylesheet" href="/css/ext/pure/pure.css"/>
+    <link rel="stylesheet" href="/css/ext/pure.css"/>
     <link rel="stylesheet" href="/css/phoenix.css"/>
 	
     <!-- style app -->
     <link rel="stylesheet" href="/dnsguard/web/css/simple.css"/>
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css"/>
     
-    <script data-main="/dnsguard/web/js/main" src="/js/ext/requirejs/require.js"></script>
+    <script data-main="/dnsguard/web/js/main" src="/js/ext/require.js"></script>
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
