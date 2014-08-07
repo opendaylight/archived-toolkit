@@ -8,6 +8,7 @@
  * author: Luis Chiang
  */
 
+
 package org.sdnhub.dnsguard.northbound;
 
 import java.util.List;

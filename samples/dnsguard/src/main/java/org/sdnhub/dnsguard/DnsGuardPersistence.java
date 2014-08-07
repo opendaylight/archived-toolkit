@@ -21,6 +21,7 @@ import java.util.Properties;
 
 import net.dougharris.dns.ResourceRecord;
 
+import org.hsqldb.jdbc.JDBCDriver;
 import org.sdnhub.dnsguard.renders.DnsRecordReply;
 import org.sdnhub.dnsguard.renders.DnsUsage;
 import org.sdnhub.dnsguard.renders.Violator;
@@ -38,7 +39,7 @@ public class DnsGuardPersistence implements IDnsGuard {
 	protected static final Logger log = LoggerFactory
 			.getLogger(DnsGuardPersistence.class);
 	
-	private String dbdriver = "com.mysql.jdbc.Driver";
+	private String dbdriver = "org.hsqldb.jdbc.JDBCDriver";
 	private String dbserver,dbname,user,passwd;
 	private int dbport;
 	private Connection connection;
@@ -91,7 +92,7 @@ public class DnsGuardPersistence implements IDnsGuard {
 		
 		try {
 			 
-			return this.connection.isValid(10);
+			return !this.connection.isClosed();
 			
 		} catch (SQLException e) {
 			
@@ -110,8 +111,13 @@ public class DnsGuardPersistence implements IDnsGuard {
 			// fix in case of class not found, edit file: \main\src\assemble\bin.xml
 			// and add the line: <include>mysql:mysql-connector-java</include>
 			
-	          Class.forName(dbdriver).newInstance();
-	          String url = "jdbc:mysql://" + dbserver +":" + String.valueOf(dbport) +"/" + dbname;
+	          //Class.forName(dbdriver);//.newInstance();
+			  // fix: http://stackoverflow.com/questions/11774595/hsqldb-bundle-in-felix-org-hsqldb-jdbcdriver-not-found
+	          DriverManager.registerDriver(new JDBCDriver());
+	          
+	          //String url = "jdbc:hsqldb://" + dbserver +":" + String.valueOf(dbport) +"/" + dbname;
+	          
+	          String url = "jdbc:hsqldb:file:/configuration/startup/dnsspy";
 	          
 	          this.connection = DriverManager.getConnection(url,user,passwd);
 	          createTables();
@@ -119,8 +125,7 @@ public class DnsGuardPersistence implements IDnsGuard {
 	          
 	          return true;
 	           
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			
+		} catch ( SQLException e) {
 			e.printStackTrace();
 		}
 		
@@ -179,7 +184,7 @@ public class DnsGuardPersistence implements IDnsGuard {
 				// TODO: improve security
 				try{
 					
-				    String sql = "INSERT INTO bulkreply (tstamp, request, type, ttl, len, data) values (NOW(), '" + rr.getName() + "', " + rr.getType() + ", " + rr.getTTL() + ", " + rr.getLength() + ", '" + rr.dataToString() +"');";			    
+				    String sql = "INSERT INTO bulkreply (idbulkreply, tstamp, request, type, ttl, len, data) values (IDENTITY(), NOW(), '" + rr.getName() + "', " + rr.getType() + ", " + rr.getTTL() + ", " + rr.getLength() + ", '" + rr.dataToString() +"');";			    
 				    statement.addBatch(sql);
 			    
 				}catch(Exception ex){
@@ -352,15 +357,19 @@ public class DnsGuardPersistence implements IDnsGuard {
 			
 			Statement statement = connection.createStatement();
 			
-			String sql = "select ip_dst, tstamp FROM bulkreply where ip_src not in (select configval from config where configname = 'localdns') group by ip_dst";
+			//String sql = "select ip_dst, tstamp FROM bulkreply where ip_src not in (select configval from config where configname = 'localdns') group by ip_dst, DAYS(tstamp)";
 			
+			String sql = "select ip_dst FROM bulkreply where ip_src not in (select configval from config where configname = 'localdns') group by ip_dst";
+			 
 			//String sql = "select ip_dst, tstamp FROM dnsspy.bulkreply LIMIT 10";
 			
 			ResultSet rs = statement.executeQuery(sql);
 			
 			while (rs.next()){
 				
-				results.add( new Violator(rs.getString(1),  rs.getString(2)) );
+				//results.add( new Violator(rs.getString(1),  rs.getString(2)) );
+				
+				results.add( new Violator(rs.getString(1),  "-") );
 			}
 			
 			rs.close();

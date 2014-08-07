@@ -8,7 +8,6 @@
  * author: Luis Chiang
  */
 
-
 package org.sdnhub.dnsguard;
 
 import java.io.BufferedReader;
@@ -67,11 +66,14 @@ import org.sdnhub.dnsguard.renders.Violator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.hsqldb.Server;
+
 public class DnsGuard implements IListenDataPacket, IListenInventoryUpdates,
 		IfHostListener, IDnsGuard {
-
+	
+	private Server hsqlServer;
 	private DnsGuardPersistence database;
-
+	
 	protected static final Logger log = LoggerFactory.getLogger(DnsGuard.class);
 	private String dbconfig_filename = "database.config";
 	
@@ -193,11 +195,38 @@ public class DnsGuard implements IListenDataPacket, IListenInventoryUpdates,
 //		}
 
 		// read info from config file
-
-		connectToDb();
-
+		
 	}
 
+	void start(){
+		
+//		   hsqlServer = new Server();
+//
+//         // HSQLDB prints out a lot of informations when
+//         // starting and closing, which we don't need now.
+//         // Normally you should point the setLogWriter
+//         // to some Writer object that could store the logs.
+//         hsqlServer.setLogWriter(null);
+//         hsqlServer.setSilent(true);
+//
+//         // The actual database will be named 'xdb' and its
+//         // settings and data will be stored in files
+//         // testdb.properties and testdb.script
+//         hsqlServer.setDatabaseName(0, "dnsspy");
+//         hsqlServer.setDatabasePath(0, "file:dbfile");
+//
+//         // Start the database!
+//         hsqlServer.start();
+         
+		 connectToDb();
+	}
+	
+	void stop(){
+		if (hsqlServer != null) {
+            hsqlServer.stop();
+        }
+	}
+	
 	private String getDatabaseSql(){
 		
 		BundleContext bundleContext = FrameworkUtil.getBundle( this.getClass()).getBundleContext();

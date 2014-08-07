@@ -26,7 +26,7 @@
 				</div>
 				
 				<div>
-				  DB Port: <input name="dbport" value="3306" type="text">
+				  DB Port: <input name="dbport" value="9001" type="text">
 				</div>	
 				
 				<div>
@@ -34,7 +34,7 @@
 				</div>	
 				
 				<div>
-				  DB Username: <input name="dbuser" value="root" type="text">
+				  DB Username: <input name="dbuser" value="SA" type="text">
 				</div>		
 				
 				<div>
