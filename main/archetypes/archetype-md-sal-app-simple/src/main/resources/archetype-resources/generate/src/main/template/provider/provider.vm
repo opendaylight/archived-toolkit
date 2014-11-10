@@ -1,15 +1,13 @@
 package ${package}.provider;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.SettableFuture;
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
-import org.opendaylight.controller.sal.binding.api.data.DataModificationTransaction;
-import org.opendaylight.controller.sal.common.util.Rpcs;
+import org.opendaylight.controller.md.sal.binding.api.WriteTransaction;
+import org.opendaylight.controller.md.sal.common.api.data.LogicalDatastoreType;
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.EntryId;
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.SaveEntryInput;
 import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${capitalApp};
@@ -21,6 +19,7 @@ import org.opendaylight.yang.gen.v1.opendaylight.sample.rev140407.${lowerApp}.En
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 import org.opendaylight.yangtools.yang.common.RpcError;
 import org.opendaylight.yangtools.yang.common.RpcResult;
+import org.opendaylight.yangtools.yang.common.RpcResultBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +36,6 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
 
     private DataBroker dataService;
 
-    private final ExecutorService executor;
-
     public DataBroker getDataService() {
       return dataService;
     }
@@ -48,7 +45,6 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
     }
 
     public ${capitalApp}Provider() {
-      executor = Executors.newFixedThreadPool(1);
     }
 
      /**
@@ -86,36 +82,38 @@ public class ${capitalApp}Provider implements ${capitalApp}Service, AutoCloseabl
           #end
         }
       }
-      Entry entry = entryBuilder.build();
-      return executor.submit(new SaveEntry(entry));
+      final Entry entry = entryBuilder.build();
+      final SettableFuture<RpcResult<Void>> futureResult = SettableFuture.create();
+      addEntry(entry, futureResult);
+      return futureResult;
     }
+
+    private void addEntry(final Entry entry, final SettableFuture<RpcResult<Void>> futureResult) {
+            // Each entry will be identifiable by a unique key, we have to create that identifier
+            InstanceIdentifier.InstanceIdentifierBuilder<Entry> entryIdBuilder =
+                    InstanceIdentifier.<${capitalApp}>builder(${capitalApp}.class)
+                        .child(Entry.class, entry.getKey());
+            InstanceIdentifier<Entry> path = entryIdBuilder.toInstance();
+            // Place entry in data store tree
+            WriteTransaction tx = dataService.newWriteOnlyTransaction();
+            tx.put(LogicalDatastoreType.OPERATIONAL, path, entry, true);
+            Futures.addCallback(tx.submit(), new FutureCallback<Void>() {
+                @Override
+                public void onSuccess(final Void result) {
+                    futureResult.set(RpcResultBuilder.<Void>success().withResult(result).build());
+                }
+
+                @Override
+                public void onFailure(final Throwable t) {
+                    futureResult.set( RpcResultBuilder.<Void> failed()
+                        .withError(RpcError.ErrorType.APPLICATION, t.getMessage() ).build() );
+                }
+            });
+
+        }
 
     @Override
         public void close() throws Exception {
-            executor.shutdown();
         }
-
-    private class SaveEntry implements Callable<RpcResult<Void>> {
-
-      Entry entry;
-
-      public SaveEntry(Entry entry) {
-        this.entry = entry;
-      }
-
-      @Override
-      public RpcResult<Void> call() throws InterruptedException {
-        // Each entry will be identifiable by a unique key, we have to create that identifier
-        InstanceIdentifier.InstanceIdentifierBuilder<Entry> entryIdBuilder =
-            InstanceIdentifier.<${capitalApp}>builder(${capitalApp}.class)
-            .child(Entry.class, entry.getKey());
-        InstanceIdentifier<Entry> path = entryIdBuilder.toInstance();
-        // Place entry in data store tree
-        //final DataModificationTransaction it = dataService.beginTransaction();
-        //it.putOperationalData(path, entry);
-        //it.commit();
-          return Rpcs.<Void> getRpcResult(true, null, Collections.<RpcError> emptySet());
-      }
-   }
 
 }

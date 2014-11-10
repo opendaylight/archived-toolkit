@@ -107,7 +107,7 @@ public class CodeGenerator {
     context.put("fields", fieldKeys);
     context.put("app", appName);
     context.put("capitalApp", CodeGeneratorUtil.capitalizeFirstLetter(appName));
-    String path = "web/src/main/resources/WEB-INF/pages/view.jsp";
+    String path = "web/src/main/resources/pages/view.html";
     CodeGeneratorUtil.writeFile(PATH_TO_ROOT_DIR, path, context, template);
   }
 

@@ -24,7 +24,7 @@ public class ProviderTemplateProcessor {
       VelocityContext context = new VelocityContext();
       context.put("app", appName);
       /* now render the template into a File */
-      String path = "provider/src/main/resources/configuration/initial/05-provider-" + appName + "-sample.xml";
+      String path = "provider/src/main/resources/configuration/initial/05-provider-config.xml";
       CodeGeneratorUtil.writeFile(CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 

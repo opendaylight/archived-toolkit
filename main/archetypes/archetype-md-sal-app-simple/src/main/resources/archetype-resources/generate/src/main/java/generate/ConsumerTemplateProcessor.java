@@ -24,7 +24,7 @@ public class ConsumerTemplateProcessor {
     VelocityContext context = new VelocityContext();
     context.put("app", appName);
     /* now render the template into a File */
-    String path = "consumer/src/main/resources/configuration/initial/06-consumer-" + appName + "-sample.xml";
+    String path = "consumer/src/main/resources/configuration/initial/06-consumer-config.xml";
     CodeGeneratorUtil.writeFile(CodeGenerator.PATH_TO_ROOT_DIR, path, context, template);
   }
 

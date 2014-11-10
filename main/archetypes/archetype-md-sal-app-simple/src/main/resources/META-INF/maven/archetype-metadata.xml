@@ -57,7 +57,7 @@
     </module>
     <module id="sample-web" dir="web" name="sample-web">
       <fileSets>
-        <fileSet encoding="UTF-8">
+        <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/java</directory>
           <includes>
             <include>**/*.java</include>
@@ -78,6 +78,16 @@
         </fileSet>
       </fileSets>
     </module>
+      <module id="sample-feature" dir="features" name="sample-features">
+          <fileSets>
+              <fileSet filtered="true" encoding="UTF-8">
+                  <directory>src/main/resources</directory>
+                  <includes>
+                      <include>**/*.xml</include>
+                  </includes>
+              </fileSet>
+          </fileSets>
+      </module>
   </modules>
   
   <fileSets>

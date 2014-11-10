@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<features name="${appName}-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+
+    <feature name='odl-${appName}-provider' version='${project.version}'>
+        <feature version='${yangtools.version}'>odl-yangtools-common</feature>
+        <feature version='${yangtools.version}'>odl-yangtools-binding</feature>
+        <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
+        <bundle>mvn:${groupId}/${artifactName}-model/${project.version}</bundle>
+        <bundle>mvn:${groupId}/${artifactName}-provider/${project.version}</bundle>
+        <configfile finalname="${config.configfile.directory}/05-${appName}-provider-config.xml">mvn:${groupId}/${artifactName}-provider/${project.version}/xml/config</configfile>
+    </feature>
+    <feature name='odl-${appName}-consumer' version='${project.version}'>
+        <feature>odl-${appName}-provider</feature>
+        <bundle>mvn:${groupId}/${artifactName}-consumer/${project.version}</bundle>
+        <configfile finalname="${config.configfile.directory}/06-${appName}-consumer-config.xml">mvn:${groupId}/${artifactName}-consumer/${project.version}/xml/config</configfile>
+    </feature>
+    <feature name='odl-${appName}-web' version='${project.version}'>
+        <feature>http</feature>
+        <feature>odl-${appName}-provider</feature>
+        <feature version='${mdsal.version}'>odl-restconf-noauth</feature>
+        <bundle>mvn:${groupId}/${artifactName}-web/${project.version}</bundle>
+    </feature>
+</features>
