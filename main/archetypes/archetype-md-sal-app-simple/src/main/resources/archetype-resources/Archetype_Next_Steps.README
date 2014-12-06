@@ -29,50 +29,45 @@ You are now ready to modify your source code. If you want, you can deploy your M
 ================================================
 === Quick Start - Deploying Your New Bundles ===
 ================================================
-These steps outline how to manually deploy your new bundles. See below for how to set your bundles
-up to be automatically included in your distribution whenever that is built.
+These steps outline how to manually deploy your application feature into the controller.
 
-    1) Locate your distribution of ODL. The distribution for the core controller is found under the
-    controller git repository (after running a mvn clean install from the controller root). The path is
-    controller/opendaylight/distribution/opendaylight/target/distribution.opendaylight-osgipackage/opendaylight/.
 
-    2)Copy model/target/<app-name>-model-<version>.jar to the 'plugins' directory in your distribution of the controller.
+    1) Locate your ODL distribution. The distribution for the core controller is found under the controller git repository (after running a mvn clean install from the controller root).
+    The path is controller/opendaylight/distribution/opendaylight-karaf/target/assembly/bin.
 
-    3)Copy provider/src/main/resources/configuration/initial/05-provider-<app_name>-sample.xml to the
-    'configuration/initial/' directory in your distribution of the controller.
+    2) Start karaf  via command ./karaf.
 
-    4)Copy provider/target/<app-name>-provider-<version>.jar to the 'plugins' directory in your distribution of the controller.
+    3) Add your feature repo in the karaf. This can be done in following way, where <artifactId>, <groupId> and <version> are what you supplied before -
 
-    5)Copy consumer/src/main/resources/configuration/initial/06-consumer-<app_name>-sample.xml to the
-    'configuration/initial/' directory in your distribution of the controller.
+    ```
+        feature:repo-add mvn:<groupId>/features-<artifactId>/<version>/xml/features
+    ```
 
-    6)Copy consumer/target/<app-name>-consumer-<version>.jar to the 'plugins' directory in your distribution of the controller.
+    An example of above command would be like below -
 
-    7)Copy web/target/<app-name>-web-<version>.jar to the 'plugins' directory in your distribution of the controller
+    ```
+        feature:repo-add mvn:org.opendaylight.controller/features-mdSalExample/1.0-SNAPSHOT/xml/features
+    ```
 
-    8)Run the controller using the run.sh. You should see messages similar to the following being printed:
+    4) Once feature repo is added, install the feature on karaf console via command such as
 
-//Note: Below our "app-name" is "Task" - you can see that we use that name as the prefix for classes.
-2014-07-02 05:16:08.258 EDT [config-pusher] INFO  o.o.c.c.y.c.t.i.TaskProviderModule - TaskProvider (instance org.opendaylight.controller.config.yang.config.task_provider.impl.TaskProviderModule$1CloseResources@11a15a0) initialized.
-2014-07-02 05:16:08.305 EDT [config-pusher] INFO  o.o.c.c.y.c.t.i.TaskConsumerModule - TaskConsumerService (instance org.opendaylight.controller.config.yang.config.task_consumer.impl.TaskConsumerModule$1AutoCloseableService@56e83e5e) initialized.
+    ```
+        feature:install odl-task-web
+    ```
 
-If you see these info messages printed, then you have successfully deployed your bundles!
+    If you have picked a different appName, then feature name will be odl-<appName>-web etc.
 
-============================================
-=== Automatically Deploying your Bundles ===
-============================================
 
-To have your bundles and configuration files deployed automatically when the distribution is built follow these steps:
+    5) You should see messages similar to the following being printed:
 
-    1) Modify the 'controller/opendaylight/distribution/opendaylight/pom.xml" adding the bundles you want to deploy as dependencies.
-    (now when the distribution project is built, your artifacts will be automatically copied into the distribution).
+    Note: Below our "app-name" is "Task" (yours by default is the same)- you can see that we use that name as the prefix for classes.
 
-    2) *Move* provider/src/main/resources/configuration/initial/05-provider-<app_name>-sample.xml to the
-    'controller/opendaylight/distribution/opendaylight/src/main/resources/configuration/initial/' directory
+    2014-07-02 05:16:08.258 EDT [config-pusher] INFO  o.o.c.c.y.c.t.i.TaskProviderModule - TaskProvider (instance org.opendaylight.controller.config.yang.config.task_provider.impl.TaskProviderModule$1CloseResources@11a15a0) initialized.
+    2014-07-02 05:16:08.305 EDT [config-pusher] INFO  o.o.c.c.y.c.t.i.TaskConsumerModule - TaskConsumerService (instance org.opendaylight.controller.config.yang.config.task_consumer.impl.TaskConsumerModule$1AutoCloseableService@56e83e5e) initialized.
 
-    3) *Move* consumer/src/main/resources/configuration/initial/06-consumer-<app_name>-sample.xml to the
-    'controller/opendaylight/distribution/opendaylight/src/main/resources/configuration/initial/' directory.
-    (when the distribution project is built these configuration files are copied to the configuration/initial directory in the distribution).
+
+If you see these info messages printed on the Karaf log then you have successfully deployed your bundles!
+
 
 ===========================
 === Overview of Bundles ===
@@ -112,6 +107,9 @@ Once the archetype creation completes, you will have 5 sub folders created.
     you get access to RESTConf web services for your model automatically just for deploying your
     model.
 
+6) features
+    - The Karaf features directory provides a list of sample features to enable provider, consumer and web.
+
 In addition to above folders/bundles we also generate:
      i) a root parent pom.xml file which enables quick building of your projects bundles
     ii) a .gitignore file, which is set up to automatically ignore a default set of files (target
@@ -131,7 +129,8 @@ bundles to start:
     provider
 
 If you don't want to use the other bundles for now, simply modify the root pom.xml and comment out
-the remaining bundles from the "modules" section at the end of the pom.xml file.
+the remaining bundles from the "modules" section at the end of the pom.xml file. Then open features.xml file
+present in features/src/main/resources directory. Remove the feature of project that you are removing. Like web or consumer feature.
 
 Note: The consumer and provider bundles depend on the model bundle. So if you are using either of
 those bundles you must also use the model bundle.

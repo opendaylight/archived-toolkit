@@ -22,7 +22,7 @@
       </dependency>
       <dependency>
           <groupId>${groupId}</groupId>
-          <artifactId>${rootArtifactId}-consumer</artifactId>
+          <artifactId>${rootArtifactId}-provider</artifactId>
           <version>${project.version}</version>
           <type>xml</type>
           <classifier>config</classifier>
