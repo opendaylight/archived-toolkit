@@ -5,13 +5,12 @@
   <groupId>org.opendaylight.toolkit</groupId>
   <artifactId>releasepom</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>toolkit</name> <!-- Used by Sonar to set project name -->
   <packaging>pom</packaging>
 
   <prerequisites>
     <maven>3.0</maven>
   </prerequisites>
-
-  <name>opendaylight-toolkit</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
