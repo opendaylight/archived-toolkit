@@ -6,7 +6,7 @@
 
     <feature name='odl-${appName}-provider' version='${project.version}'>
         <feature version='${yangtools.version}'>odl-yangtools-common</feature>
-        <feature version='${yangtools.version}'>odl-yangtools-binding</feature>
+        <feature version='${yangtools.version}'>odl-mdsal-binding-base</feature>
         <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
         <bundle>mvn:${groupId}/${artifactName}-model/${project.version}</bundle>
         <bundle>mvn:${groupId}/${artifactName}-provider/${project.version}</bundle>
