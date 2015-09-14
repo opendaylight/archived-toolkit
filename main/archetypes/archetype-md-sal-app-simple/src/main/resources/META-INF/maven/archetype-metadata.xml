@@ -89,9 +89,9 @@
           </fileSets>
       </module>
   </modules>
-  
+
   <fileSets>
-    <!-- explicitly copy over the .gitignore file to ignore the generate project -->  
+    <!-- explicitly copy over the .gitignore file to ignore the generate project -->
     <fileSet>
       <directory></directory>
       <includes>
@@ -99,9 +99,9 @@
         <include>Archetype_Next_Steps.README</include>
       </includes>
     </fileSet>
-    
+
     <!--  The following 3 file sets copy over the "generate" project, which is a one time use
-          project which should be used to generate additional files that are needed. 
+          project which should be used to generate additional files that are needed.
           We do NOT want this project included in the final project so we need to manually copy
           the files instead of calling it a "module" like we do for other folders above. -->
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
