@@ -298,7 +298,7 @@
       <artifactId>servlet</artifactId>
     </dependency>
     <dependency>
-      <groupId>equinoxSDK381</groupId>
+      <groupId>org.eclipse.tycho</groupId>
       <artifactId>org.eclipse.osgi</artifactId>
     </dependency>
     <dependency>
